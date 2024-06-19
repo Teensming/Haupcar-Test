@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:haupcartest/home.dart';
-import 'package:haupcartest/statemanagement/provider/Beauty_provider.dart';
-import 'package:haupcartest/statemanagement/provider/fragrances_provider.dart';
+import 'package:haupcartest/statemanagement/provider/Product_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -16,11 +15,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) {
-          return ProductBeautyprovider();
+          return Productprovider();
         }),
-        ChangeNotifierProvider(create: (context) {
-          return ProductFragrancesprovider();
-        })
       ],
       child: MaterialApp(
         home: Homepage(),

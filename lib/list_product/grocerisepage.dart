@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:haupcartest/statemanagement/provider/Product_provider.dart';
 import 'package:provider/provider.dart';
 
-class BeautyPage extends StatelessWidget {
+class GroceriesPage extends StatelessWidget {
   final String category;
 
-  BeautyPage({required this.category});
+  GroceriesPage({required this.category});
 
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<Productprovider>(context, listen: false);
-    provider.fetchProductsBeauty();
+    provider.fetchProductsGroceries();
 
     return Scaffold(
       appBar: AppBar(
@@ -18,13 +18,13 @@ class BeautyPage extends StatelessWidget {
       ),
       body: Consumer<Productprovider>(
         builder: (context, provider, child) {
-          if (provider.productBeautyList.isEmpty) {
+          if (provider.productGroceriesList.isEmpty) {
             return Center(child: CircularProgressIndicator());
           } else {
             return ListView.builder(
-              itemCount: provider.productBeautyList.length,
+              itemCount: provider.productGroceriesList.length,
               itemBuilder: (context, index) {
-                final product = provider.productBeautyList[index];
+                final product = provider.productGroceriesList[index];
                 return Card(
                   margin: EdgeInsets.all(10),
                   child: ListTile(

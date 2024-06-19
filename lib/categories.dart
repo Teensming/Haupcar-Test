@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:haupcartest/list_product/beautypage.dart';
 import 'package:haupcartest/list_product/fragrancespage.dart';
+import 'package:haupcartest/list_product/furniturepage.dart';
+import 'package:haupcartest/list_product/grocerisepage.dart';
 import 'package:haupcartest/statemanagement/Bloc/category_bloc.dart';
 import 'package:haupcartest/statemanagement/Event/category_event.dart';
 import 'package:haupcartest/statemanagement/State/category_state.dart';
@@ -48,6 +50,24 @@ class CategoriesPage extends StatelessWidget {
                           MaterialPageRoute(
                             builder: (context) =>
                                 FragrancePage(category: category.name!),
+                          ),
+                        );
+                      }
+                      if (category.name == 'Furniture') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FurniturePage(category: category.name!),
+                          ),
+                        );
+                      }
+                      if (category.name == 'Groceries') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                GroceriesPage(category: category.name!),
                           ),
                         );
                       }

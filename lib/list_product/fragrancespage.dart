@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:haupcartest/statemanagement/provider/fragrances_provider.dart';
+import 'package:haupcartest/statemanagement/provider/Product_provider.dart';
 import 'package:provider/provider.dart';
 
 class FragrancePage extends StatelessWidget {
@@ -9,15 +9,14 @@ class FragrancePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider =
-        Provider.of<ProductFragrancesprovider>(context, listen: false);
-    provider.fetchProducts();
+    final provider = Provider.of<Productprovider>(context, listen: false);
+    provider.fetchProductsFragrances();
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Category $category'),
       ),
-      body: Consumer<ProductFragrancesprovider>(
+      body: Consumer<Productprovider>(
         builder: (context, provider, child) {
           if (provider.productFragrancesList.isEmpty) {
             return Center(child: CircularProgressIndicator());
