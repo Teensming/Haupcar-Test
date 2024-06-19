@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:haupcartest/list_product/beautypage.dart';
+import 'package:haupcartest/list_product/fragrancespage.dart';
 import 'package:haupcartest/statemanagement/Bloc/category_bloc.dart';
 import 'package:haupcartest/statemanagement/Event/category_event.dart';
 import 'package:haupcartest/statemanagement/State/category_state.dart';
@@ -29,19 +31,41 @@ class CategoriesPage extends StatelessWidget {
                 itemCount: state.categories.length,
                 itemBuilder: (context, index) {
                   final category = state.categories[index];
-                  return Card(
-                    elevation: 5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          category.name ?? 'No Name',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
+                  return GestureDetector(
+                    onTap: () {
+                      if (category.name == 'Beauty') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BeautyPage(category: category.name!),
                           ),
-                        ),
-                        Text(category.slug ?? 'No Slug'),
-                      ],
+                        );
+                      }
+                      if (category.name == 'Fragrances') {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                FragrancePage(category: category.name!),
+                          ),
+                        );
+                      }
+                    },
+                    child: Card(
+                      elevation: 5,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            category.name ?? 'No Name',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(category.slug ?? 'No Slug'),
+                        ],
+                      ),
                     ),
                   );
                 },

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:haupcartest/statemanagement/provider/Beauty_provider.dart';
 import 'package:provider/provider.dart';
 
-class ListProductPage extends StatelessWidget {
-  const ListProductPage({Key? key}) : super(key: key);
+class BeautyPage extends StatelessWidget {
+  final String category;
+
+  BeautyPage({required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class ListProductPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('List Product'),
+        title: Text('Category $category'),
       ),
       body: Consumer<ProductBeautyprovider>(
         builder: (context, provider, child) {
@@ -27,7 +29,15 @@ class ListProductPage extends StatelessWidget {
                   margin: EdgeInsets.all(10),
                   child: ListTile(
                     title: Text(product.title ?? 'No Title'),
-                    subtitle: Text(product.description ?? 'No Description'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(product.description ?? 'No Description'),
+                        Text(
+                            'Price: \$${product.price?.toStringAsFixed(2) ?? 'N/A'}'),
+                        Text("Rating: ${product.rating}")
+                      ],
+                    ),
                     leading: Image.network(
                       product.thumbnail ?? '',
                       fit: BoxFit.cover,
