@@ -34,9 +34,6 @@ class CategoriesPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => CategoryBloc()..add(FetchCategories()),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Categories'),
-        ),
         body: BlocBuilder<CategoryBloc, CategoryState>(
           builder: (context, state) {
             if (state is CategoryLoading) {

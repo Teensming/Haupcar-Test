@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:haupcartest/tabpage.dart';
+import 'package:haupcartest/categories.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -13,7 +13,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Homescreen'),
+        title: Text('Categories'),
       ),
       endDrawer: Drawer(
         child: ListView(
@@ -44,7 +44,7 @@ class _HomepageState extends State<Homepage> {
           ],
         ),
       ),
-      body: Tabpage(),
+      body: CategoriesPage(),
     );
   }
 }
