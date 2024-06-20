@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:haupcartest/categories.dart';
+import 'package:haupcartest/l10n/app_localizations.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  final void Function(Locale locale) onLocaleChange;
+
+  const Homepage({super.key, required this.onLocaleChange});
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -13,7 +16,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categories'),
+        title: Text(AppLocalizations.of(context)!.translate('title')),
       ),
       endDrawer: Drawer(
         child: ListView(
@@ -26,7 +29,7 @@ class _HomepageState extends State<Homepage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  'Setting',
+                  AppLocalizations.of(context)!.translate('setting'),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 24,
@@ -36,9 +39,34 @@ class _HomepageState extends State<Homepage> {
             ),
             ListTile(
               leading: Icon(Icons.language),
-              title: Text('Language'),
+              title: Text(AppLocalizations.of(context)!.translate('language')),
               onTap: () {
-                Navigator.pop(context);
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(AppLocalizations.of(context)!
+                        .translate('choose_language')),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          title: Text('English'),
+                          onTap: () {
+                            widget.onLocaleChange(Locale('en'));
+                            Navigator.pop(context);
+                          },
+                        ),
+                        ListTile(
+                          title: Text('ไทย'),
+                          onTap: () {
+                            widget.onLocaleChange(Locale('th'));
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               },
             ),
           ],

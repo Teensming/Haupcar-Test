@@ -29,6 +29,39 @@ import 'package:haupcartest/statemanagement/Event/category_event.dart';
 import 'package:haupcartest/statemanagement/State/category_state.dart';
 
 class CategoriesPage extends StatelessWidget {
+  // Create a map that matches category names with their respective pages
+  final Map<String, Widget Function(BuildContext, String)> categoryPages = {
+    'Beauty': (context, category) => BeautyPage(category: category),
+    'Fragrances': (context, category) => FragrancePage(category: category),
+    'Furniture': (context, category) => FurniturePage(category: category),
+    'Groceries': (context, category) => GroceriesPage(category: category),
+    'Home Decoration': (context, category) =>
+        HomedecorationPage(category: category),
+    'Kitchen Accessories': (context, category) =>
+        AccessoriesPage(category: category),
+    'Laptops': (context, category) => LaptopPage(category: category),
+    'Mens Shirts': (context, category) => MenshirtsPage(category: category),
+    'Mens Shoes': (context, category) => MenshoesPage(category: category),
+    'Mens Watches': (context, category) => MensWatchPage(category: category),
+    'Mobile Accessories': (context, category) => MobilePage(category: category),
+    'Motorcycle': (context, category) => MotorcyclePage(category: category),
+    'Skin Care': (context, category) => SkincarePage(category: category),
+    'Smartphones': (context, category) => SmartphonePage(category: category),
+    'Sports Accessories': (context, category) =>
+        SportAccessoriesPage(category: category),
+    'Sunglasses': (context, category) => SunglassesPage(category: category),
+    'Tablets': (context, category) => TabletsPage(category: category),
+    'Tops': (context, category) => TopsPage(category: category),
+    'Vehicle': (context, category) => VehiclePage(category: category),
+    'Womens Bags': (context, category) => WomenBagsPage(category: category),
+    'Womens Dresses': (context, category) =>
+        WomenDressesPage(category: category),
+    'Womens Jewellery': (context, category) =>
+        WomenJewelleryPage(category: category),
+    'Womens Shoes': (context, category) => WomenShoesPage(category: category),
+    'Womens Watches': (context, category) => WomenWatchPage(category: category),
+  };
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -52,219 +85,13 @@ class CategoriesPage extends StatelessWidget {
                   final category = state.categories[index];
                   return GestureDetector(
                     onTap: () {
-                      if (category.name == 'Beauty') {
+                      final pageBuilder = categoryPages[category.name];
+                      if (pageBuilder != null) {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                BeautyPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Fragrances') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                FragrancePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Furniture') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                FurniturePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Groceries') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                GroceriesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Home Decoration') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                HomedecorationPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Kitchen Accessories') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                AccessoriesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Laptops') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                LaptopPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Mens Shirts') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MenshirtsPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Mens Shoes') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MenshoesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Mens Watches') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MensWatchPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Mobile Accessories') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MobilePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Motorcycle') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                MotorcyclePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Skin Care') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SkincarePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Smartphones') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SmartphonePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Sports Accessories') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SportAccessoriesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Sunglasses') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                SunglassesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Tablets') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                TabletsPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Tops') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                TopsPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Vehicle') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                VehiclePage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Womens Bags') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                WomenBagsPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Womens Dresses') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                WomenDressesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Womens Jewellery') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                WomenJewelleryPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Womens Shoes') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                WomenShoesPage(category: category.name!),
-                          ),
-                        );
-                      }
-                      if (category.name == 'Womens Watches') {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                WomenWatchPage(category: category.name!),
+                                pageBuilder(context, category.name!),
                           ),
                         );
                       }
